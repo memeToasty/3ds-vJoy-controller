@@ -92,22 +92,22 @@ int main(int argc, char **argv) {
 		failExit("socket: %d %s\n", errno, strerror(errno));
 	}
 
-	memset (&server, 0, sizeof (server));
+	// memset (&server, 0, sizeof (server));
 	memset (&client, 0, sizeof (client));
 
-	server.sin_family = AF_INET;
-	server.sin_port = htons (80);
-	server.sin_addr.s_addr = gethostid();
+	// server.sin_family = AF_INET;
+	// server.sin_port = htons (80);
+	// server.sin_addr.s_addr = gethostid();
 
-	printf("Point your browser to http://%s/\n",inet_ntoa(server.sin_addr));
+	// printf("Point your browser to http://%s/\n",inet_ntoa(server.sin_addr));
 		
-	if ( (ret = bind (sock, (struct sockaddr *) &server, sizeof (server))) ) {
-		close(sock);
-		failExit("bind: %d %s\n", errno, strerror(errno));
-	}
+	// if ( (ret = bind (sock, (struct sockaddr *) &server, sizeof (server))) ) {
+	// 	close(sock);
+	// 	failExit("bind: %d %s\n", errno, strerror(errno));
+	// }
 
 	// Set socket non blocking so we can still read input to exit
-	fcntl(sock, F_SETFL, fcntl(sock, F_GETFL, 0) | O_NONBLOCK);
+	// fcntl(sock, F_SETFL, fcntl(sock, F_GETFL, 0) | O_NONBLOCK);
 
 	if ( (ret = listen( sock, 5)) ) {
 		failExit("listen: %d %s\n", errno, strerror(errno));
@@ -117,7 +117,8 @@ int main(int argc, char **argv) {
 		gspWaitForVBlank();
 		hidScanInput();
 
-		csock = accept (sock, (struct sockaddr *) &client, &clientlen);
+		// csock = accept (sock, (struct sockaddr *) &client, &clientlen);
+		csock = connect()
 
 		if (csock<0) {
 			if(errno != EAGAIN) {
